@@ -12,12 +12,12 @@ int main()
     {
         //   printf("Enter the arrival time of %d process :\n",i+1);
         // scanf("%d",&at[i]);
-
         printf("Enter the burst time of %d process : ", i + 1);
         scanf("%d", &bt[i]);
         p[i] = i + 1;
     }
-    /*Sorting According to Burst Time*/ for (i = 0; i < n; i++)
+    /*Sorting According to Burst Time*/ 
+    for (i = 0; i < n; i++)
     {
         for (j = i + 1; j < n; j++)
         {
@@ -44,11 +44,18 @@ int main()
     atat += tat[0];
     atat /= n;
     awt /= n;
-    printf("Process.\tB.T.\tW.T.\tT.A.T.\n");
+    printf("Process\tBurst Time\tWaiting Time\tTurnaround Time\n");
     for (i = 0; i < n; i++)
     {
-        printf("P[%d]\t         %3d\t%3d\t%4d\n", p[i], bt[i], wt[i], tat[i]);
+        printf("P[%d]\t%8d\t%8d\t%8d\n", p[i], bt[i], wt[i], tat[i]);
     }
     printf("Average Waiting Time: %0.3f\nAverage Turn Around Time:%0.3f", awt, atat);
     return 0;
 }
+// 6
+// 9
+// 4
+// 6
+// 2
+// 5
+// 3
