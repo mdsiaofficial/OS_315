@@ -16,7 +16,7 @@ int main()
         scanf("%d", &bt[i]);
         p[i] = i + 1;
     }
-    /*Sorting According to Burst Time*/ 
+    /*Sorting According to Burst Time*/
     for (i = 0; i < n; i++)
     {
         for (j = i + 1; j < n; j++)
