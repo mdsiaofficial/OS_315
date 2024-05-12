@@ -4,9 +4,11 @@ int main()
   int i, n, j, temp;
   int bt[100], wt[100], tat[100], p[100];
   float awt = 0, atat = 0;
+
   printf("Shortest Job First Scheduling Non-Primitive(Simultaneous Arrival)\n");
   printf("Enter the No. of processes : ");
   scanf("%d", &n);
+  
   for (i = 0; i < n; i++)
   {
     // printf("Enter the arrival time of %d process :\n",i+1);
@@ -15,6 +17,7 @@ int main()
     scanf("%d", &bt[i]);
     p[i] = i + 1;
   }
+
   /*Sorting According to Burst Time*/
   for (i = 0; i < n; i++)
   {
@@ -25,6 +28,7 @@ int main()
         temp = bt[j];
         bt[j] = bt[i];
         bt[i] = temp;
+
         temp = p[j];
         p[j] = p[i];
         p[i] = temp;
@@ -33,18 +37,19 @@ int main()
   }
   /*waiting time & turnaround time calculation of every process*/
   wt[0] = 0;
-  tat[0] = bt[0];
+  tat[0] = bt[0] + wt[0];
+  atat += tat[0];
+
   for (i = 1; i < n; i++)
   {
     wt[i] = bt[i - 1] + wt[i - 1];
     awt += wt[i];
-    // tat[i] = tat[i - 1] + bt[i];
     tat[i] = wt[i] + bt[i];
     atat += tat[i];
   }
-  atat += tat[0];
   atat /= n;
   awt /= n;
+  
   printf("Process.\tB.T.\tW.T.\tT.A.T.\n");
   for (i = 0; i < n; i++)
   {

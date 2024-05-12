@@ -1,7 +1,9 @@
 #include <stdio.h>
 int main(){
+
     int bt[100], tq, i, n, rembt[100], t = 0, wt[100], c = 0, p[100], tat[100];
     double total = 0, avgwt = 0;
+
     printf("Enter process number: ");
     scanf("%d", &n);
     for (i = 0; i < n; i++){
@@ -35,10 +37,10 @@ int main(){
     }
 
     avgwt = total / n;
-    printf("Process\tBurst Time\tWaiting Time\tTurnaround Time\n");
+    printf("Process\t\tBT\tWT\tTAT\n");
     for (i = 0; i < n; i++){
         total == bt[i];
-        printf("P[%d]\t%d\t%d\t%d\n", p[i], bt[i], wt[i], tat[i]);
+        printf("P[%d]\t\t%d\t%d\t%d\n", p[i], bt[i], wt[i], tat[i]);
     }
     double avgtt = total / n;
     printf("Average waiting time: %f\n", avgwt);

@@ -1,9 +1,11 @@
 #include <stdio.h>
 int main()
 {
-  int bt[20], p[20], wt[20], tat[20], pr[20], i, j, n, total = 0, pos, temp, avg_wt, avg_tat;
+  int bt[20], p[20], wt[20], tat[20], pr[20], i, j, n, total = 0, pos, temp;
+  float awt = 0, atat = 0;
   printf("Enter Total Number of Process:");
   scanf("%d", &n);
+
   printf("\nEnter Burst Time and Priority\n");
   for (i = 0; i < n; i++)
   {
@@ -24,24 +26,35 @@ int main()
         temp = pr[i];
         pr[i] = pr[j];
         pr[j] = temp;
+
         temp = bt[i];
         bt[i] = bt[j];
         bt[j] = temp;
+
         temp = p[i];
         p[i] = p[j];
         p[j] = temp;
       }
     }
   }
-  wt[0] = 0; // waiting time for first process is zero
-  // calculate waiting time
+
+  /*waiting time & turnaround time calculation of every process*/
+  wt[0] = 0;
+  tat[0] = bt[0] + wt[0];
+  atat += tat[0];
+
   for (i = 1; i < n; i++)
   {
-    wt[i] = wt[i - 1] + bt[i - 1];
-    total += wt[i];
+    wt[i] = bt[i - 1] + wt[i - 1];
+    awt += wt[i];
+    tat[i] = wt[i] + bt[i];
+    atat += tat[i];
   }
-  avg_wt = total / n; // average waiting time
-  total = 0;
+  atat /= n;
+  awt /= n;
+
+
+  
   printf("\nProcess\t Burst Time \tWaiting Time\tTurnaround Time");
   for (i = 0; i < n; i++)
   {
@@ -49,8 +62,8 @@ int main()
     total += tat[i];
     printf("\nP[%d]\t\t %d\t\t %d\t\t\t%d", p[i], bt[i], wt[i], tat[i]);
   }
-  avg_tat = total / n; // average turnaround time
-  printf("\n\nAverage Waiting Time=%d", avg_wt);
-  printf("\nAverage Turnaround Time=%d\n", avg_tat);
+  
+  printf("\n\nAverage Waiting Time=%d", awt);
+  printf("\nAverage Turnaround Time=%d\n", atat);
   return 0;
 }
